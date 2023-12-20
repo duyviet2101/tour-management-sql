@@ -12,6 +12,7 @@ export const index = async (req: Request, res: Response) => {
   });
 
   res.render("client/pages/tours/index", {
+    title: "Danh sách Tours",
     tours: tours
   });
 }
