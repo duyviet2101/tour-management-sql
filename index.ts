@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // import sequelize from "./config/database";
-import clientRoutes from "./routes/client/index.client";
+import clientRoutes from "./routes/client/index.route";
 // sequelize;
 
 const app: Express = express();
