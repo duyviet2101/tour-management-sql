@@ -17,15 +17,30 @@ var imagesMain = new Swiper(".imagesMain", {
 });
 // end swiper for tour detail
 
+const alertAddCartSuccess = () => {
+  const elementAlert = document.querySelector("[alert-add-cart-success]");
+  if (elementAlert) {
+    elementAlert.classList.remove("alert-hidden");
+    setTimeout(() => {
+      elementAlert.classList.add("alert-hidden");
+    }, 3000);
+
+    const closeAlert = document.querySelector("[close-alert]");
+    closeAlert.addEventListener("click", () => {
+      elementAlert.classList.add("alert-hidden");
+    });
+  }
+}
+
 // Carts
 const cart = localStorage.getItem("cart");
 
-// if cart is empty or not exist in local storage then create cart object in local storage with empty array value
+  // if cart is empty or not exist in local storage then create cart object in local storage with empty array value
 if (!cart) {
   localStorage.setItem("cart", JSON.stringify([]));
 }
 
-// add tour to cart
+  // add tour to cart
 const formAddToCart = document.querySelector("[form-add-to-cart]");
 if (formAddToCart) {
   formAddToCart.addEventListener("submit", (event) => {
@@ -48,6 +63,8 @@ if (formAddToCart) {
         });
       }
       localStorage.setItem("cart", JSON.stringify(cart));
+
+      alertAddCartSuccess();
     }
   });
 }
