@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+import moment = require("moment");
 dotenv.config();
 
 // import sequelize from "./config/database";
@@ -14,6 +15,10 @@ app.use(express.static("public"));
 app.set("views", "./views");
 app.set("view engine", "pug");
 
+// app local variables
+app.locals.moment = moment;
+
+// client routes
 clientRoutes(app);
 
 app.listen(port, () => {
