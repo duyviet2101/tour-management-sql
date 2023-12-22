@@ -40,6 +40,17 @@ if (!cart) {
   localStorage.setItem("cart", JSON.stringify([]));
 }
 
+// Hiển thị thêm số lượng sản phẩm vào mini-cart
+const showMiniCart = () => {
+  const miniCart = document.querySelector("[mini-cart]");
+  if(miniCart) {
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+    miniCart.innerHTML = totalQuantity;
+  }
+}
+showMiniCart();
+
   // add tour to cart
 const formAddToCart = document.querySelector("[form-add-to-cart]");
 if (formAddToCart) {
@@ -65,6 +76,9 @@ if (formAddToCart) {
       localStorage.setItem("cart", JSON.stringify(cart));
 
       alertAddCartSuccess();
+
+      showMiniCart();
+
     }
   });
 }
