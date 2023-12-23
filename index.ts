@@ -12,6 +12,9 @@ const port: number | string = process.env.PORT || 3012;
 
 app.use(express.static("public"));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.set("views", "./views");
 app.set("view engine", "pug");
 
