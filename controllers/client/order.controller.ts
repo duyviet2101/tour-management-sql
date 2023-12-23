@@ -49,6 +49,6 @@ export const order = async (req: Request, res: Response) => {
   res.json({
     code:200,
     message:"dat hang thanh cong",
-    // orderCode: code
+    orderCode: code
   });
 };
