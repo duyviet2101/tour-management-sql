@@ -49,6 +49,8 @@ const drawListTour = () => {
       // end tính tổng đơn hàng
   
       deleteItemInCart();
+
+      updateQuantityInCart();
     })
 }
 drawListTour();
@@ -70,3 +72,23 @@ const deleteItemInCart = () => {
   });
 }
 // end Xoá sản phẩm trong cart
+
+// cap nhat so luong sản phẩm trong cart
+const updateQuantityInCart = () => {
+  const listInput = document.querySelectorAll("[list-tour] input[name='quantity']");
+  listInput.forEach(input => {
+    input.addEventListener("change", () => {
+      const tourId = input.getAttribute("item-id");
+      const quantity = parseInt(input.value);
+
+      const cart = JSON.parse(localStorage.getItem("cart"));
+      const tourUpdate = cart.find(item => item.tourId == tourId);
+      tourUpdate.quantity = quantity;
+
+      console.log(cart);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      drawListTour();
+    });
+  });
+}
+// end cap nhat so luong sản phẩm trong cart
